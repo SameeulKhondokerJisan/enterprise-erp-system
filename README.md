@@ -7,13 +7,10 @@ The system manages core organizational operations such as employees, departments
 
 ## 🚀 Features
 
-* Employee Management
-* Department Management
-* Project Management
-* Payroll Processing
-* Attendance Tracking
-* RESTful API Architecture
-* MySQL Database Integration
+* Employee management through REST endpoints (`POST` and `GET /erp/employees`)
+* Service-layer methods to add and list departments, projects, payroll records and attendance (not yet exposed as endpoints)
+* JPA entities and MySQL tables for all five modules
+* Layered architecture: controller, service, repository, entity
 
 ---
 
@@ -49,7 +46,8 @@ src/main/java/com/erp
 ### 1️⃣ Clone the repository
 
 ```
-git clone https://github.com/yourusername/enterprise-erp-system.git
+git clone https://github.com/SameeulKhondokerJisan/enterprise-erp-system.git
+cd enterprise-erp-system/enterprise-erp-system
 ```
 
 ---
@@ -62,22 +60,18 @@ Create a MySQL database:
 CREATE DATABASE erp_system;
 ```
 
-Update **application.properties**
+Set your MySQL credentials as environment variables. `application.properties` reads them, so no password is stored in the code:
 
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/erp_system
-spring.datasource.username=root
-spring.datasource.password=your_password
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+export DB_USERNAME=root
+export DB_PASSWORD=your_mysql_password
 ```
 
 ---
 
 ### 3️⃣ Run the Application
 
-Run the Spring Boot application:
+Run the Spring Boot application (needs Maven installed):
 
 ```
 mvn spring-boot:run
